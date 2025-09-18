@@ -1,0 +1,19 @@
+.hotel-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.hotel-card .card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
+
+.hotel-card .card-title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.hotel-card .badge {
+  font-size: 1rem;
+  padding: 0.5em 1em;
+}

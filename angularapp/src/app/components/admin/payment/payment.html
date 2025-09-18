@@ -1,0 +1,38 @@
+<!-- Payment Transactions List -->
+    <div class="card mt-3">
+      <div class="card-body">
+        <h2 class="card-title mb-4">Payment Transactions</h2>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Transaction ID</th>
+              <th>Booking ID</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let txn of transactions; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ txn.transactionId }}</td>
+              <td>{{ txn.bookingId }}</td>
+              <td>{{ txn.name }}</td>
+              <td>{{ txn.date | date:'shortDate' }}</td>
+              <td>{{ txn.amount | currency }}</td>
+              <td>{{ txn.method }}</td>
+              <td>
+                <span class="badge" [ngClass]="{
+                  'bg-success': txn.status === 'Success',
+                  'bg-warning': txn.status === 'Pending',
+                  'bg-danger': txn.status === 'Failed'
+                }">{{ txn.status }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>

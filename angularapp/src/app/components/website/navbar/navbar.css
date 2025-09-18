@@ -1,0 +1,19 @@
+.navbar-nav {
+      flex-direction: row;
+      gap: 2rem;
+    }
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+    @media (max-width: 991px) {
+      .navbar-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
+    }
+.navbar,
+.navbar .container-fluid {
+  padding: 0 !important;
+}

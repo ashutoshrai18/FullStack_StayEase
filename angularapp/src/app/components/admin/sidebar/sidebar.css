@@ -1,0 +1,30 @@
+.nav-container {
+  height: 100vh;
+}
+.nav-link {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 12px;
+  padding-left: 40px;
+  color: black;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  border-color: #8f89a8;
+  background: #8f89a8;
+  color: #fff !important;
+  border-radius: 12px;
+}
+
+.nav-link.active {
+  border-color: #8f89a8!important;
+
+  background: #8f89a8;
+  color: #fff !important;
+  border-radius: 12px;
+
+}

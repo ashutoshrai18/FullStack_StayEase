@@ -1,0 +1,27 @@
+.parent-div {
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+.card {
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+.btn-primary {
+  background-color: #3f51b5;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #303f9f;
+}
+a {
+  color: #3f51b5;
+  text-decoration: none;
+}
+a:hover {
+
+  color: #303f9f;
+}

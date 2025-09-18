@@ -1,0 +1,26 @@
+/* Footer Styles */
+.footer {
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background: #0d6efd;
+    color: white;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+.footer a {
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.footer a:hover {
+    color: #ffc107;
+}
+@media (max-width: 767.98px) {
+    .footer .text-md-start, .footer .text-md-end {
+        text-align: center !important;
+    }
+    .footer .mb-md-0 {
+        margin-bottom: 0 !important;
+    }
+}

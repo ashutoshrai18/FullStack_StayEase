@@ -1,0 +1,33 @@
+<div class="search-box">
+              <form class="row g-2" (ngSubmit)="onSearch()">
+                <div class="col-12 col-md-3">
+                  <label for="address" class="form-label text-start d-block">Address</label>
+                  <input type="text" id="address" class="form-control" placeholder="Address" [(ngModel)]="address" name="address">
+                </div>
+                <div class="col-12 col-md-2">
+                  <label for="roomType" class="form-label text-start d-block">Room Type</label>
+                  <select id="roomType" class="form-select" [(ngModel)]="roomType" name="roomType">
+                    <option selected disabled>Room Type</option>
+                    <option value="single">Single Room</option>
+                    <option value="double">Double Room</option>
+                    <option value="suite">Suite</option>
+                    <option value="deluxe">Deluxe</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-2">
+                  <label for="checkIn" class="form-label text-start d-block">Check-In</label>
+                  <input type="date" id="checkIn" class="form-control" placeholder="Check-In" [(ngModel)]="checkIn" name="checkIn">
+                </div>
+                <div class="col-12 col-md-2">
+                  <label for="checkOut" class="form-label text-start d-block">Check-Out</label>
+                  <input type="date" id="checkOut" class="form-control" placeholder="Check-Out" [(ngModel)]="checkOut" name="checkOut">
+                </div>
+                <div class="col-12 col-md-2">
+                  <label for="rooms" class="form-label text-start d-block">Rooms</label>
+                  <input type="number" id="rooms" class="form-control" placeholder="Rooms" min="1" [(ngModel)]="rooms" name="rooms" value="1">
+                </div>
+                <div class="col-12 col-md-1 d-flex align-items-end">
+                  <button type="submit" class="btn btn-primary w-100">Search</button>
+                </div>
+              </form>
+            </div>

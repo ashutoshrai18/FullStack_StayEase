@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <!-- Left: Home Icon -->
+              <a class="navbar-brand d-flex align-items-center" routerLink="/landing">
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="me-2" viewBox="0 0 16 16">-->
+<!--                  <path d="M8 3.293l6 6V13a1 1 0 0 1-1 1h-3v-3H6v3H3a1 1 0 0 1-1-1V9.293l6-6z"/>-->
+<!--                  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l7 7a1 1 0 0 1-1.414 1.414L8 3.414 1.707 9.914A1 1 0 0 1 .293 8.5l7-7z"/>-->
+<!--                </svg>-->
+                <img src="logo.png" alt="Logo" width="120" height="50">
+<!--                StayEase-->
+              </a>
+              <!-- Responsive Toggler -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <!-- Center: Navigation Links -->
+              <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/landing">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/hotel-lists">Hotel</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/about" fragment="about-us">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/contact" fragment="contact-us">Contact</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Right: Profile Icon -->
+              <div class="d-flex align-items-center">
+                <a routerLink="/login" title="Profile" class="nav-link text-light">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    <path fill-rule="evenodd" d="M8 9a5 5 0 0 0-5 5v1h10v-1a5 5 0 0 0-5-5z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </nav>

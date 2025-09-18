@@ -1,0 +1,35 @@
+.search-box form {
+  background: #222;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.16);
+  padding: 1.5rem;
+  color: #f1f1f1;
+}
+
+.search-box .form-label {
+  color: #f1f1f1;
+}
+
+.search-box .form-control,
+.search-box .form-select {
+  background: #333;
+  color: #f1f1f1;
+  border: 1px solid #444;
+  min-height: 48px;
+  font-size: 1rem;
+}
+
+.search-box .form-control::placeholder {
+  color: #bbb;
+}
+
+.search-box button {
+  min-height: 48px;
+  font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+  .search-box form {
+    padding: 1rem;
+  }
+}

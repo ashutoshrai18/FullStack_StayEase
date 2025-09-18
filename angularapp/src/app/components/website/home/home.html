@@ -1,0 +1,85 @@
+<!-- src/app/components/website/home/home.html -->
+  <app-navbar></app-navbar>
+  <section class="hero">
+    <div class="hero-overlay">
+      <h1 class="display-3 fw-bold text-center">Welcome to StayEase</h1>
+      <p class="lead text-center">Smart Hotel Booking Made Simple</p>
+        <app-search-box/>
+<!--        <form class="row g-2" (ngSubmit)="onSearch()">-->
+<!--          <div class="col-12 col-md-3">-->
+<!--            <select class="form-select">-->
+<!--              <option selected disabled>Room Type</option>-->
+<!--              <option value="single">Single Room</option>-->
+<!--              <option value="double">Double Room</option>-->
+<!--              <option value="suite">Suite</option>-->
+<!--              <option value="deluxe">Deluxe</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          <div class="col-12 col-md-3">-->
+<!--            <input type="date" class="form-control" placeholder="Check-In">-->
+<!--          </div>-->
+<!--          <div class="col-12 col-md-3">-->
+<!--            <input type="date" class="form-control" placeholder="Check-Out">-->
+<!--          </div>-->
+<!--          <div class="col-12 col-md-2">-->
+<!--            <input type="number" class="form-control" placeholder="Rooms" min="1" value="1">-->
+<!--          </div>-->
+<!--          <div class="col-12 col-md-1">-->
+<!--            <button type="submit" class="btn btn-primary w-100">Search</button>-->
+<!--          </div>-->
+<!--        </form>-->
+    </div>
+  </section>
+
+  <section class="features py-5">
+    <div class="container text-center">
+      <h2 class="mb-4">Why Choose StayEase?</h2>
+      <div class="row">
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <i class="bi bi-building fs-1"></i>
+          <h5>Wide Hotel Choices</h5>
+          <p>Thousands of hotels across the globe at your fingertips.</p>
+        </div>
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <i class="bi bi-currency-dollar fs-1"></i>
+          <h5>Best Price Guarantee</h5>
+          <p>Get the best deals and offers for your stay.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <i class="bi bi-shield-check fs-1"></i>
+          <h5>Secure Booking</h5>
+          <p>Safe and secure payment gateway for worry-free booking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-us" class="about-us py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="mb-4">About Us</h2>
+      <p class="lead">
+        StayEase is dedicated to making hotel booking easy, fast, and secure. Our platform connects travelers with
+        thousands of hotels worldwide, ensuring the best prices and a seamless experience.
+      </p>
+    </div>
+  </section>
+
+  <section id="contact-us" class="contact-us py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">Contact Us</h2>
+      <form class="row g-3 justify-content-center">
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="col-12 col-md-6">
+          <input type="email" class="form-control" placeholder="Your Email" required>
+        </div>
+        <div class="col-12">
+          <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+        </div>
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>

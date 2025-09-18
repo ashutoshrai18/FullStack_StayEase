@@ -1,0 +1,95 @@
+<!-- Booking List -->
+<div class="card mt-3">
+  <div class="card-body">
+    <h2 class="card-title mb-4">Bookings</h2>
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addBookingModal">
+      Add Booking
+    </button>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Room Type</th>
+        <th>No. of Persons</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let booking of bookings; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ booking.name }}</td>
+        <td>{{ booking.phone }}</td>
+        <td>{{ booking.roomType }}</td>
+        <td>{{ booking.persons }}</td>
+        <td>{{ booking.date | date }}</td>
+        <td>
+          <span class="badge bg-info">{{ booking.status }}</span>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-primary me-2" (click)="editBooking(i)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="removeBooking(i)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add/Edit Booking Modal -->
+<div class="modal fade" id="addBookingModal" tabindex="-1" aria-labelledby="addBookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" (ngSubmit)="addBooking()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBookingModalLabel">
+          {{ editingIndex !== null ? 'Edit Booking' : 'Add Booking' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input [(ngModel)]="newBooking.name" name="name" type="text" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone No</label>
+          <input [(ngModel)]="newBooking.phone" name="phone" type="tel" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+          <label for="roomType" class="form-label">Room Type</label>
+          <select [(ngModel)]="newBooking.roomType" name="roomType" class="form-select" required>
+            <option value="" disabled>Select Room Type</option>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Suite">Suite</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="persons" class="form-label">No. of Persons</label>
+          <input [(ngModel)]="newBooking.persons" name="persons" type="number" min="1" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input [(ngModel)]="newBooking.date" name="date" type="date" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+          <label for="status" class="form-label">Status</label>
+          <select [(ngModel)]="newBooking.status" name="status" class="form-select" required>
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">
+          {{ editingIndex !== null ? 'Update Booking' : 'Add Booking' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
