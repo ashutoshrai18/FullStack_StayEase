@@ -22,14 +22,13 @@ import { Profile } from './components/website/profile/profile';
 import { Register } from './components/website/register/register';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'landing', pathMatch: 'full'},
-  {path: 'login', component: Login},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'signup', component: Signup},
-  {path: 'website/register', component: Register},
+  {path: 'register', component: Register},
   {path: 'navbar', component: Navbar},
   {path: 'sidebar', component: Sidebar},
-  {path: 'website/login', component: LoginComponent},
-  {path: 'landing', component: LandingPage},
+  {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'hotel-lists', component: HotelListsComponent},
   {path: 'admin/login', component: Login},
   {path: 'hotel-details/:id/:name', component: HotelDetailsComponent},

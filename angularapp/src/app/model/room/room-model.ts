@@ -5,4 +5,5 @@ export interface RoomModel {
   type: string;
   price: number;
   status: string;
+  capacity: number;
 }

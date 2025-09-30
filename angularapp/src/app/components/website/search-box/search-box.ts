@@ -1,16 +1,13 @@
-// src/app/components/website/search-box/search-box.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {Navbar} from '../navbar/navbar';
 
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.html',
   styleUrls: ['./search-box.css'],
   imports: [CommonModule, FormsModule]
-
 })
 export class SearchBox {
   address = '';
@@ -18,20 +15,22 @@ export class SearchBox {
   checkIn = '';
   checkOut = '';
   rooms = 1;
-  guest = 1;
+  guest: number | null = null;
+  errorMessage = '';
 
   constructor(private router: Router) {}
 
   onSearch() {
-    // You can pass search params if needed
+    if (!this.address || !this.roomType || !this.guest) {
+      this.errorMessage = 'All fields are required.';
+      return;
+    }
+    this.errorMessage = '';
     this.router.navigate(['/hotel-lists'], {
       queryParams: {
         address: this.address,
         roomType: this.roomType,
-        checkIn: this.checkIn,
-        checkOut: this.checkOut,
-        rooms: this.rooms,
-        guest: this.guest
+        numPersons: this.guest
       }
     });
   }

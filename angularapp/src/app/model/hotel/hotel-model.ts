@@ -9,6 +9,7 @@ import { RoomModel } from '../room/room-model';
 // 	rooms?: RoomModel[];
 // 	reviews?: Review[];
 // }
+
 export interface HotelModel {
   hotelId?: number;
   name: string;
@@ -21,6 +22,8 @@ export interface HotelModel {
   imageUrl?: string;
   createdAt?: string;
   updatedAt?: string;
+  latitude?: number;    // Add this
+  longitude?: number;   // Add this
   rooms?: RoomModel[];
   reviews?: Review[];
 }

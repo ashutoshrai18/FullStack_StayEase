@@ -79,5 +79,8 @@ public class Hotel {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    private Double latitude;   // Added for geolocation
+    private Double longitude;
+
     // Getters & setters
 }

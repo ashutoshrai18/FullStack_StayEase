@@ -7,6 +7,7 @@ import { HotelModel } from '../model/hotel/hotel-model';
 @Injectable({ providedIn: 'root' })
 export class HotelService {
   private apiUrl = '/api/hotels';
+  constructor(private http: HttpClient) {}
 
   getAllHotels(): Observable<HotelModel[]> {
     return this.http.get<HotelModel[]>(this.apiUrl);
@@ -24,5 +25,23 @@ export class HotelService {
     return this.http.delete<void>(`${this.apiUrl}/${hotelId}`);
   }
 
-  constructor(private http: HttpClient) {}
+  searchHotels(query: string): Observable<HotelModel[]> {
+    return this.http.get<HotelModel[]>(`${this.apiUrl}/search`, {
+      params: {q: query}
+    });
+  }
+
+  advancedSearchHotels(address: string, roomType: string, numPersons: number): Observable<HotelModel[]> {
+    return this.http.get<HotelModel[]>(`${this.apiUrl}/search/advanced`, {
+      params: {
+        address,
+        roomType,
+        numPersons: numPersons.toString()
+      }
+    });
+  }
+
+  getHotelById(hotelId: number): Observable<HotelModel> {
+    return this.http.get<HotelModel>(`${this.apiUrl}/${hotelId}`);
+  }
 }

@@ -1,31 +1,61 @@
-import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+    import { CommonModule } from '@angular/common';
+    import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+    import { HotelService } from '../../../service/hotel-service';
+    import { forkJoin } from 'rxjs';
+    import { filter } from 'rxjs/operators';
 
-@Component({
-  selector: 'app-hotel-details',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './hotel-details.html',
-  styleUrls: ['./hotel-details.css']
-})
-export class HotelDetailsComponent {
-  hotelId: string | null = null;
-  hotelName: string | null = null;
-  hotel = {
-    name: 'Sample Hotel',
-    location: 'Sample Location',
-    image: 'assets/sample-hotel.jpg',
-    rooms: 10,
-    price: 2000
-  };
-  safeMapUrl = 'https://maps.google.com/...'; // Replace with actual map URL
+    @Component({
+      selector: 'app-hotel-details',
+      standalone: true,
+      imports: [CommonModule],
+      templateUrl: './hotel-details.html',
+      styleUrls: ['./hotel-details.css']
+    })
+    export class HotelDetailsComponent implements OnInit {
+      hotel: any = null;
+      isLoading = false;
 
-  constructor(private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(params => {
-      this.hotelId = params.get('id');
-      this.hotelName = params.get('name');
-      // You can fetch hotel details using hotelId here
-    });
-  }
-}
+      constructor(
+        private route: ActivatedRoute,
+        private hotelService: HotelService,
+        private router: Router,
+        private cdr: ChangeDetectorRef
+      ) {}
+
+      ngOnInit() {
+        this.router.events
+          .pipe(filter(event => event instanceof NavigationEnd))
+          .subscribe(() => {
+            this.loadHotelDetails();
+          });
+        this.loadHotelDetails();
+      }
+
+      loadHotelDetails() {
+        const hotelId = this.route.snapshot.paramMap.get('id');
+        if (!hotelId) {
+          this.hotel = null;
+          this.cdr.detectChanges();
+          return;
+        }
+        this.isLoading = true;
+        this.hotel = null;
+        forkJoin({
+          hotel: this.hotelService.getHotelById(Number(hotelId))
+        }).subscribe({
+          next: ({ hotel }) => {
+            this.hotel = {
+              ...hotel,
+              images: hotel.imageUrl ? [hotel.imageUrl] : [],
+            };
+            this.isLoading = false;
+            this.cdr.detectChanges();
+          },
+          error: () => {
+            this.isLoading = false;
+            this.cdr.detectChanges();
+          }
+        });
+      }
+    }

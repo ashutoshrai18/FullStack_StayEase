@@ -51,7 +51,7 @@ public class Room {
     private Long roomId;
     private String roomNumber;
     private String type;
-
+    private Integer capacity;
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;

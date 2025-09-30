@@ -22,7 +22,7 @@ public class HotelController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Hotel> getHotelById(Long id)  {
+    public ResponseEntity<Hotel> getHotelById(@PathVariable Long id)  {
         return service.getHotelById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -44,6 +44,19 @@ public class HotelController {
         service.deleteHotelById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public List<Hotel> searchHotels(@RequestParam("q") String query) {
+        return service.searchHotels(query);
+    }
+
+    // Advanced search endpoint
+    @GetMapping("/search/advanced")
+    public List<Hotel> searchHotelsAdvanced(
+        @RequestParam String address,
+        @RequestParam String roomType,
+        @RequestParam int numPersons
+    ) {
+        return service.searchHotelsAdvanced(address, roomType, numPersons);
+    }
 }
-
-
