@@ -1,33 +1,34 @@
 <div class="container mt-3">
-              <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Hotel List ({{ hotels.length }})</h2>
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addHotelModal">Add Hotel</button>
-              </div>
-              <ul class="list-group">
-                <li class="list-group-item" *ngFor="let hotel of hotels; let i = index">
-                  <div class="d-flex align-items-center">
-                    <img [src]="hotel.image" alt="Hotel Image" class="me-3"
-                         style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px;">
-                    <div>
-                      <h5 class="mb-1">{{ hotel.name }}</h5>
-                      <small class="text-muted">{{ hotel.location }}</small>
-                      <div>
-                        <span>Rating: ★{{ hotel.rating }}</span> |
-                        <span>Price: ₹{{ hotel.price }}</span>
-                      </div>
-                    </div>
-                    <button class="btn btn-info ms-auto me-2" (click)="showMore(i)" data-bs-toggle="modal"
-                            data-bs-target="#showMoreModal">Show More
-                    </button>
-                    <button class="btn btn-warning me-2" (click)="editHotel(i)" data-bs-toggle="modal" data-bs-target="#editHotelModal">
-                      Edit
-                    </button>
-                    <button class="btn btn-danger" (click)="deleteHotel(i)">
-                      Delete
-                    </button>
-                  </div>
-                </li>
-              </ul>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Hotel List ({{ hotels.length }})</h2>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addHotelModal">Add Hotel</button>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let hotel of hotels; let i = index">
+      <div class="d-flex align-items-center">
+        <img [src]="hotel.imageUrl" alt="Hotel Image" class="me-3"
+             style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px;">
+        <div>
+          <h5 class="mb-1">{{ hotel.name }}</h5>
+          <small class="text-muted">{{ hotel.address }}</small>
+          <div>
+            <span>Rating: ★{{ hotel.rating }}</span> |
+            <span>Price: ₹{{ hotel.pricePerNight }}</span>
+          </div>
+        </div>
+        <button class="btn btn-info ms-auto me-2" (click)="showMore(i)" data-bs-toggle="modal"
+                data-bs-target="#showMoreModal">Show More
+        </button>
+        <button class="btn btn-warning me-2" (click)="editHotel(i)" data-bs-toggle="modal"
+                data-bs-target="#editHotelModal">
+          Edit
+        </button>
+        <button class="btn btn-danger" (click)="deleteHotel(i)">
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
 
   <!-- Show More Modal -->
   <div class="modal fade" id="showMoreModal" tabindex="-1">
@@ -35,16 +36,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Hotel Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn-close" (click)="closeModal('showMoreModal')"></button>
         </div>
         <div class="modal-body">
           <div *ngIf="selectedHotel">
             <p>Name: {{ selectedHotel.name }}</p>
-            <p>Location: {{ selectedHotel.location }}</p>
+            <p>Location: {{ selectedHotel.address }}</p>
             <p>Rating: {{ selectedHotel.rating }}</p>
-            <p>Price: ₹{{ selectedHotel.price }}</p>
-            <p>Description: {{ selectedHotel.desc }}</p>
-            <p>Rooms: {{ selectedHotel.rooms }}</p>
+            <p>Price: ₹{{ selectedHotel.pricePerNight }}</p>
+            <p>Description: {{ selectedHotel.description }}</p>
+            <p>Room Type: {{ selectedHotel.roomType }}</p>
+            <p>Contact Info: {{ selectedHotel.contactInfo }}</p>
+            <p>Rooms: {{ selectedHotel.rooms?.length }}</p>
+            <img *ngIf="selectedHotel.imageUrl" [src]="selectedHotel.imageUrl" alt="Hotel Image"
+                 style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
           </div>
         </div>
       </div>
@@ -57,17 +62,57 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Edit Hotel</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn-close" (click)="closeModal('editHotelModal')"></button>
         </div>
         <div class="modal-body">
           <form *ngIf="editHotelData">
             <input [(ngModel)]="editHotelData.name" name="name" class="form-control mb-2" placeholder="Name">
-            <!-- Add other fields similarly -->
+            <input [(ngModel)]="editHotelData.address" name="address" class="form-control mb-2" placeholder="Address">
+            <input [(ngModel)]="editHotelData.description" name="description" class="form-control mb-2"
+                   placeholder="Description">
+            <input [(ngModel)]="editHotelData.rating" name="rating" type="number" class="form-control mb-2"
+                   placeholder="Rating">
+            <input [(ngModel)]="editHotelData.pricePerNight" name="pricePerNight" type="number"
+                   class="form-control mb-2" placeholder="Price Per Night">
+            <input [(ngModel)]="editHotelData.roomType" name="roomType" class="form-control mb-2"
+                   placeholder="Room Type">
+            <input [(ngModel)]="editHotelData.contactInfo" name="contactInfo" class="form-control mb-2"
+                   placeholder="Contact Info">
+            <input [(ngModel)]="editHotelData.imageUrl" name="imageUrl" class="form-control mb-2"
+                   placeholder="Image URL">
             <button type="button" class="btn btn-primary" (click)="updateHotel()">Update</button>
           </form>
         </div>
       </div>
     </div>
   </div>
-              <!-- Add Hotel Modal, Show More Modal, Edit Hotel Modal go here -->
-            </div>
+
+  <!-- Add Hotel Modal -->
+  <div class="modal fade" id="addHotelModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Hotel</h5>
+          <button type="button" class="btn-close" (click)="closeModal('addHotelModal')"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <input [(ngModel)]="newHotel.name" name="name" class="form-control mb-2" placeholder="Name">
+            <input [(ngModel)]="newHotel.address" name="address" class="form-control mb-2" placeholder="Address">
+            <input [(ngModel)]="newHotel.description" name="description" class="form-control mb-2"
+                   placeholder="Description">
+            <input [(ngModel)]="newHotel.rating" name="rating" type="number" class="form-control mb-2"
+                   placeholder="Rating">
+            <input [(ngModel)]="newHotel.pricePerNight" name="pricePerNight" type="number" class="form-control mb-2"
+                   placeholder="Price Per Night">
+            <input [(ngModel)]="newHotel.roomType" name="roomType" class="form-control mb-2" placeholder="Room Type">
+            <input [(ngModel)]="newHotel.contactInfo" name="contactInfo" class="form-control mb-2"
+                   placeholder="Contact Info">
+            <input [(ngModel)]="newHotel.imageUrl" name="imageUrl" class="form-control mb-2" placeholder="Image URL">
+            <button type="button" class="btn btn-success" (click)="addHotel()">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
