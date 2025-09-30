@@ -1,3 +1,136 @@
+.footer-social {
+    flex-direction: column;
+
+    display: flex;
+    align-items: flex-end!important;
+    width: 100%;
+}
+.footer-social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.footer-social a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.footer-social a:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 991px) {
+    .footer-social {
+        align-items: center;
+    }
+    .footer-social a {
+        font-size: 0.95rem;
+    }
+}
+.footer-links {
+    margin-top: 0.5rem;
+}
+.footer-logo {
+    height: 40px;
+    width: auto;
+}
+.footer .row {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.footer .fw-bold {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+.footer i {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+.footer a {
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.footer a:hover {
+    color: #ffc107;
+}
+.footer .copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+@media (max-width: 991px) {
+    .footer .row > div {
+        margin-bottom: 1rem;
+    }
+    .footer .copyright {
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+}
+/* Footer Styles */
+.footer {
+    position: relative;
+    width: 100%;
+    min-height: 110px;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background: #181a1b;
+    color: white;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer .container-fluid {
+    width: 100%;
+    max-width: 1200px;
+}
+.footer .row {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.footer .col-lg-4, .footer .col-md-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.footer .text-lg-end {
+    align-items: flex-end;
+}
+.footer .fw-bold {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+.footer i {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+.footer a {
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.footer a:hover {
+    color: #ffc107;
+}
+@media (max-width: 991px) {
+    .footer .text-lg-end, .footer .text-md-start {
+        text-align: center !important;
+        align-items: center !important;
+    }
+    .footer .mb-lg-0, .footer .mb-md-0 {
+        margin-bottom: 0 !important;
+    }
+    .footer .row > div {
+        margin-bottom: 1rem;
+    }
+}
 /* Footer Styles */
 .footer {
     position: relative;

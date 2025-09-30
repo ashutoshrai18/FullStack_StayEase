@@ -1,13 +1,35 @@
-  <footer class="footer bg-dark text-white py-3 mt-auto">
-    <div class="container-fluid">
-      <div class="row align-items-center">
-        <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
-          <span>&copy; {{ currentYear }} StayEase. All Rights Reserved.</span>
+<footer class="footer bg-dark text-white py-4 mt-auto">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <!-- Left: Logo and Links -->
+      <div class="col-lg-6 col-md-12 d-flex flex-column align-items-center align-items-lg-start justify-content-center justify-content-lg-start mb-2 mb-lg-0">
+        <div class="d-flex align-items-center mb-2 mb-lg-0">
+          <img src="logo.png" alt="StayEase Logo" class="footer-logo me-2" style="height:40px;width:auto;">
+          <!-- <span class="fw-bold">StayEase</span> -->
         </div>
-        <div class="col-md-6 text-center text-md-end">
-          <a href="#" class="text-white me-3">Privacy Policy</a>
-          <a href="#" class="text-white">Terms of Service</a>
+        <div class="footer-links mt-2 w-100 d-flex flex-column align-items-center align-items-lg-start justify-content-center justify-content-lg-start">
+          <a href="#" class="text-white mb-1">Privacy Policy</a>
+          <a href="#" class="text-white mb-1">FAQ</a>
+          <a href="#" class="text-white mb-1">Terms of Service</a>
+          <a href="#" class="text-white mb-1">Support</a>
+        </div>
+      </div>
+      <!-- Right: Social -->
+      <div class="col-lg-6 col-md-6 text-center text-lg-end" >
+        <div class="footer-social">
+          <div class=" footer-social-icon">
+          <span class="mb-2">Follow us:</span>
+          <a href="#" class="text-white"><i class="bi bi-facebook me-2"></i> Facebook</a>
+          <a href="#" class="text-white"><i class="bi bi-twitter me-2"></i> Twitter</a>
+          <a href="#" class="text-white"><i class="bi bi-instagram me-2"></i> Instagram</a>
+          <a href="#" class="text-white"><i class="bi bi-linkedin me-2"></i> LinkedIn</a>
+        </div>
         </div>
       </div>
     </div>
-  </footer>
+    <!-- Bottom: Copyright -->
+    <div class="copyright">
+      <small>&copy; {{ currentYear }} StayEase. All Rights Reserved.</small>
+    </div>
+  </div>
+</footer>

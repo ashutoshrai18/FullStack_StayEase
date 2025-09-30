@@ -21,24 +21,63 @@
 //
 //
 //}
+//package com.example.springapp.model;
+//
+//import jakarta.persistence.*;
+//import lombok.*;
+//import java.util.List;
+//
+//@Entity
+//@Data @NoArgsConstructor @AllArgsConstructor @Builder
+//public class Hotel {
+//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long hotelId;
+//
+//    private String name;
+//    private String address;
+//
+//    @OneToMany(mappedBy = "hotel")
+//    private List<Room> rooms;
+//
+//    @OneToMany(mappedBy = "hotel")
+//    private List<Review> reviews;
+//}
+
 package com.example.springapp.model;
 
+
 import jakarta.persistence.*;
-import lombok.*;
-import java.util.List;
+import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
+@Table(name = "hotel")
 public class Hotel {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hotelId;
 
     private String name;
     private String address;
 
-    @OneToMany(mappedBy = "hotel")
-    private List<Room> rooms;
+    @Column(length = 500)
+    private String description;
 
-    @OneToMany(mappedBy = "hotel")
-    private List<Review> reviews;
+    private Double rating;
+
+    private Double pricePerNight;
+
+    private String roomType;
+
+    private String contactInfo;
+
+    private String imageUrl;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    // Getters & setters
 }

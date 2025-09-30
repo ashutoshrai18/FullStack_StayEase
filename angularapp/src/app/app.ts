@@ -5,10 +5,11 @@ import { RouterModule } from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app.routes';
 import {Dashboard} from './components/admin/dashboard/dashboard';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterOutlet,Admin],
+  imports: [RouterLink, RouterOutlet,Admin, HttpClientModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

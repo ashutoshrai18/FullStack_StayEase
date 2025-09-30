@@ -23,6 +23,14 @@ public class UserService {
         return repo;
     }
 
+    public User authenticate(String email, String password) {
+        User user = repo.findByEmail(email);
+        if (user != null && user.getPassword().equals(password)) { // Use hashing in production
+            return user;
+        }
+        throw new IllegalArgumentException("Invalid email or password");
+    }
+
     public Page<User> getUsers(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return repo.findAll(pageable);
@@ -46,10 +54,25 @@ public class UserService {
         return repo.findById(id);
     }
 
-    public User createUser(User user){
-        return repo.save(user);
-    }
+ // In UserService.java
+ public User createUser(User user){
+     if (repo.existsByEmail(user.getEmail())) {
+         throw new IllegalArgumentException("Email already exists");
+     }
+     try {
+         return repo.save(user);
+     } catch (org.springframework.dao.DataIntegrityViolationException e) {
+         throw new IllegalArgumentException("Email already exists (constraint violation)");
+     }
+ }
 
+    // UserService.java
+//    public User createUser(User user) {
+//        if (userRepository.existsByEmail(user.getEmail())) {
+//            throw new IllegalArgumentException("Email already exists");
+//        }
+//        return userRepository.save(user);
+//    }
     public User updateUser(User user){
         return repo.save(user);
     }

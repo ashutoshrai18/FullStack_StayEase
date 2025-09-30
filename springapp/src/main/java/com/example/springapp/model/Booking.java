@@ -22,5 +22,17 @@ public class Booking {
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
 
+    @Column(updatable = false)
+    private LocalDate bookingDate;
+
+    private int noOfPersons;
+
     private String status; // PENDING, CONFIRMED, CANCELLED
+
+    @PrePersist
+    public void prePersist() {
+        this.bookingDate = LocalDate.now();
+        this.status = "CONFIRMED";
+    }
+
 }

@@ -1,9 +1,11 @@
 // src/main/java/com/example/springapp/service/BookingService.java
 package com.example.springapp.service;
 import com.example.springapp.model.Booking;
+import com.example.springapp.model.User;
 import com.example.springapp.repository.BookingRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class BookingService {
@@ -27,5 +29,11 @@ public class BookingService {
 
     public void deleteBooking(Long id) {
         bookingRepository.deleteById(id);
+    }
+
+    public User getUserByBookingId(Long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new NoSuchElementException("Booking not found"));
+        return booking.getUser();
     }
 }

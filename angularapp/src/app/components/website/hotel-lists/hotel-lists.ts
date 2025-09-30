@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink,ActivatedRoute } from '@angular/router';
         import { CommonModule } from '@angular/common';
         import { FormsModule } from '@angular/forms';
         import { Navbar } from '../navbar/navbar';
@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
           imports: [CommonModule, FormsModule, Navbar,RouterLink]
         })
         export class HotelListsComponent {
+          searchParams: any = {};
           hotels = [
             {
               id: 1,
@@ -46,4 +47,14 @@ import { RouterLink } from '@angular/router';
             }
             // Add more hotels as needed
           ];
+
+
+          constructor(private route: ActivatedRoute) {}
+
+          ngOnInit() {
+            this.route.queryParams.subscribe(params => {
+              this.searchParams = params;
+              // Now you can use this.searchParams.address, this.searchParams.roomType, etc.
+            });
+          }
         }

@@ -3,9 +3,10 @@ package com.example.springapp.controller;
 import com.example.springapp.model.User;
 import com.example.springapp.service.UserService;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Map;
 import java.util.List;
 
 @RestController
@@ -15,6 +16,19 @@ public class UserController {
 
     public UserController(UserService service) {
         this.service = service;
+    }
+
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+        try {
+            User user = service.authenticate(email, password);
+            return ResponseEntity.ok(user);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
     @GetMapping("/by-email/{email}")
@@ -28,10 +42,10 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<User> getAllUser() {
-        return service.getAllUsers();
+    public ResponseEntity<List<User>> getAllUser() {
+        List<User> users = service.getAllUsers();
+        return ResponseEntity.ok(users);
     }
-
 
     @GetMapping
     public Page<User> getUsersBasedOnPage(@RequestParam(defaultValue = "0") int page,

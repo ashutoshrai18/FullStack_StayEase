@@ -26,6 +26,8 @@ package com.example.springapp.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class Payment {
@@ -42,4 +44,11 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
+
+    private String PaymentMethod; // e.g., CREDIT_CARD, PAYPAL, etc.
+    private LocalDate bookingDate;
+    @PrePersist
+    public void prePersist() {
+        this.bookingDate = LocalDate.now();
+    }
 }

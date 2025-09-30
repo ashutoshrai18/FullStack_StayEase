@@ -1,3 +1,17 @@
+.nav-link.active {
+  animation: fadeInActive 0.4s;
+}
+
+@keyframes fadeInActive {
+  from {
+    opacity: 0.3;
+    text-decoration-color: transparent;
+  }
+  to {
+    opacity: 1;
+    text-decoration-color: #ff4c4c;
+  }
+}
 .navbar-nav {
       flex-direction: row;
       gap: 2rem;
@@ -16,4 +30,46 @@
 .navbar,
 .navbar .container-fluid {
   padding: 0 !important;
+}
+
+.nav-link.active {
+  color: #fff !important;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.3s, color 0.3s;
+  text-decoration-color: #ff4c4c;
+}
+
+.nav-link {
+  transition: color 0.3s;
+}
+
+
+.navbar-user {
+  position: relative;
+}
+
+.custom-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 140px;
+  z-index: 1050;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.custom-dropdown .dropdown-item {
+  width: 100%;
+  padding: 8px 16px;
+  color: #212529;
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+.custom-dropdown .dropdown-item:hover {
+  background: #f8f9fa;
 }

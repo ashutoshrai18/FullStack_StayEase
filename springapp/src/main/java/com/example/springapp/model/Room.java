@@ -49,7 +49,6 @@ import lombok.*;
 public class Room {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roomId;
-
     private String roomNumber;
     private String type;
 

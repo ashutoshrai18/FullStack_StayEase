@@ -18,11 +18,21 @@ export class SearchBox {
   checkIn = '';
   checkOut = '';
   rooms = 1;
+  guest = 1;
 
   constructor(private router: Router) {}
 
   onSearch() {
     // You can pass search params if needed
-    this.router.navigate(['/hotel-lists']);
+    this.router.navigate(['/hotel-lists'], {
+      queryParams: {
+        address: this.address,
+        roomType: this.roomType,
+        checkIn: this.checkIn,
+        checkOut: this.checkOut,
+        rooms: this.rooms,
+        guest: this.guest
+      }
+    });
   }
 }

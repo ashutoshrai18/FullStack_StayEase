@@ -8,7 +8,7 @@ import { Room } from '../components/admin/room/room';
   providedIn: 'root'
 })
 export class RoomService {
-  private apiUrl = '/rooms';
+  private apiUrl = '/api/rooms';
 
   constructor(private http: HttpClient) {}
 

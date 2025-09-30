@@ -29,6 +29,7 @@
 
 package com.example.springapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -48,13 +49,18 @@ public class User {
 
     private String password;
 
+    private String address; // Added address field
+
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Booking> bookings;
 
-
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
+
     private List<Payment> payments;
 }
