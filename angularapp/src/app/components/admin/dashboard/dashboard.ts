@@ -9,9 +9,7 @@ import {RouterLink, RouterOutlet} from '@angular/router';
   imports: [
     Navbar,
     Sidebar,
-    Home,
-    RouterOutlet,
-    RouterLink
+    RouterOutlet
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',

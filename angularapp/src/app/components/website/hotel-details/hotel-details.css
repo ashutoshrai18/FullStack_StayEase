@@ -65,3 +65,11 @@ h2 {
 .fs-4 {
   font-size: 1.5rem;
 }
+
+.card.bg-dark {
+  background-color: #222 !important;
+  color: #f8f9fa !important;
+}
+.card.bg-dark .text-muted {
+  color: #bbb !important;
+}

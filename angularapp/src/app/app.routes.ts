@@ -22,21 +22,23 @@ import { Profile } from './components/website/profile/profile';
 import { Register } from './components/website/register/register';
 import {Cart} from './components/website/cart/cart';
 import {PaymentPage} from './components/website/payment-page/payment-page';
+import {Mybookings} from './components/website/mybookings/mybookings';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'signup', component: Signup},
-  {path: 'register', component: Register},
+  // {path: 'signup', component: Signup},
+  {path: 'signup', component: Register},
   {path: 'bookings', component: Booking},
   {path: 'navbar', component: Navbar},
+  {path: 'mybookings', component: Mybookings},
   {path: 'sidebar', component: Sidebar},
-  { path: 'cart/:roomId/:hotelId', component: Cart },
-  { path: 'payment/:roomId/:hotelId', component: PaymentPage },
+  { path: 'cart/:roomId/:hotelId/:nights', component: Cart },
+  { path: 'payment/:roomId/:hotelId/:nights', component: PaymentPage },
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'hotel-lists', component: HotelListsComponent},
   {path: 'admin/login', component: Login},
-  {path: 'hotel-details/:id/:name', component: HotelDetailsComponent},
+  {path: 'hotel-details/:id/:roomId/:name/:nights', component: HotelDetailsComponent},
   {path: 'profile', component: Profile},
 
   {

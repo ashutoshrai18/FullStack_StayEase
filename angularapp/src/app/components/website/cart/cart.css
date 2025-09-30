@@ -12,3 +12,10 @@ input.form-control {
 .btn-success {
   font-size: 1.1rem;
 }
+.card.bg-dark {
+  background-color: #222 !important;
+  color: #fff !important;
+}
+.card.bg-dark * {
+  color: #fff !important;
+}

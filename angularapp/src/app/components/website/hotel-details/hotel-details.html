@@ -37,10 +37,10 @@
               <div class="col-md-5 pt-3 pb-3" style="background-color: #23272b; border-radius: 12px;">
                 <h2 class="fw-bold" style="color: #fff;">{{ hotel?.name }}</h2>
                 <p class="text-muted mb-1" style="color: #ffffff;">{{ hotel?.address }}</p>
-                <div class="mb-2">
-                  <span class="badge bg-success">{{ hotel?.rating || 'N/A' }} ★</span>
-                  <span class="ms-2 text-secondary" style="color: #b0b0b0;">{{ hotel?.reviews?.length || '0' }} Ratings</span>
-                </div>
+<!--                <div class="mb-2">-->
+<!--                  <span class="badge bg-success">{{ hotel?.rating || 'N/A' }} ★</span>-->
+<!--                  <span class="ms-2 text-secondary" style="color: #b0b0b0;">{{ hotel?.reviews?.length || '0' }} Ratings</span>-->
+<!--                </div>-->
                 <p class="mb-3" style="color: #e0e0e0;">{{ hotel?.description }}</p>
                 <ul class="list-unstyled mb-3" style="color: #b0b0b0;">
                   <li><i class="bi bi-wifi"></i> Free WiFi</li>
@@ -51,9 +51,16 @@
                 </ul>
                 <div class="mb-3">
                   <span class="fs-4 fw-bold text-danger">₹{{ hotel?.pricePerNight || 'N/A' }}</span>
-                  <span class="text-muted" style="color: #b0b0b0;">/night</span>
+                  <span class=" text-white" >/night</span>
                 </div>
-                <button class="btn btn-danger w-100 mb-2">Book Now</button>
+                  <!-- Show Book Room button if hotel and roomId are available -->
+                  <button
+                    *ngIf="hotel?.hotelId && roomId"
+                    class="btn btn-danger btn-sm me-2 mb-2 mb-md-0"
+                    [routerLink]="['/cart', roomId, hotel.hotelId, this.nights]"
+                  >
+                    Book Room
+                  </button>
               </div>
             </div>
             <div class="row mt-4 mb-3">
@@ -62,29 +69,31 @@
                 <p style="color: #e0e0e0;">
                   {{ hotel?.description }}
                 </p>
-                <h5 class="fw-bold mt-4" style="color: #fff;">Reviews</h5>
-                <div *ngFor="let review of hotel?.reviews" class="border rounded p-3 mb-2" style="background-color: #181a1b; color: #e0e0e0;">
-                  <strong>{{ review.author }}</strong>
-                  <span class="text-warning">
-                    <ng-container *ngIf="review.stars; else noStars">
-                      <ng-container *ngFor="let s of [].constructor(review.stars)">
-                        ★
-                      </ng-container>
-                    </ng-container>
-                    <ng-template #noStars>★★★★☆</ng-template>
-                  </span>
-                  <p>{{ review.comment }}</p>
-                </div>
-                <div *ngIf="!hotel?.reviews || hotel?.reviews.length === 0">
-                  <div class="border rounded p-3 mb-2" style="background-color: #181a1b; color: #e0e0e0;">
-                    <strong>John Doe</strong> <span class="text-warning">★★★★☆</span>
-                    <p>Great stay! Clean rooms and friendly staff.</p>
-                  </div>
-                  <div class="border rounded p-3 mb-2" style="background-color: #181a1b; color: #e0e0e0;">
-                    <strong>Priya Singh</strong> <span class="text-warning">★★★★★</span>
-                    <p>Excellent location and amenities. Highly recommended!</p>
-                  </div>
-                </div>
+<!--                <h5 class="fw-bold mt-4" style="color: #fff;">Reviews</h5>-->
+<!--                <div *ngFor="let review of hotel?.reviews" class="border rounded p-3 mb-2" style="background-color: #181a1b; color: #e0e0e0;">-->
+<!--                  <strong>{{ review.author }}</strong>-->
+<!--                  <span class="text-warning">-->
+<!--                    <ng-container *ngIf="review.stars; else noStars">-->
+<!--                      <ng-container *ngFor="let s of [].constructor(review.stars)">-->
+<!--                        ★-->
+<!--                      </ng-container>-->
+<!--                    </ng-container>-->
+<!--                    <ng-template #noStars>★★★★☆</ng-template>-->
+<!--                  </span>-->
+<!--                  <p>{{ review.comment }}</p>-->
+<!--                </div>-->
+<!--                <div *ngIf="!hotel?.reviews || hotel?.reviews.length === 0">-->
+<!--                  <div class="border rounded p-3 mb-2" style="background-color: #181a1b; color: #e0e0e0;">-->
+<!--                    <strong>John Doe</strong> <span class="text-warning">★★★★☆</span>-->
+<!--                    <p>Great stay! Clean rooms and friendly staff.</p>-->
+<!--                  </div>-->
+<!--                  <div class="border rounded p-3 mb-2" style="background-color: #181a1b; color: #e0e0e0;">-->
+<!--                    <strong>Priya Singh</strong> <span class="text-warning">★★★★★</span>-->
+<!--                    <p>Excellent location and amenities. Highly recommended!</p>-->
+<!--                  </div>-->
+<!--                </div>-->
               </div>
             </div>
+
           </div>
+<app-footer></app-footer>

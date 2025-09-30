@@ -19,7 +19,7 @@ export class HotelListsComponent implements OnInit {
   userId: string = 'current-user-id';
   searchParams: any = {};
   isLoading: boolean = false;
-
+  nights: number = 0;
   constructor(
     private hotelService: HotelService,
     private route: ActivatedRoute,
@@ -27,16 +27,29 @@ export class HotelListsComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.searchParams = params;
-      if (this.hasValidSearchParams()) {
-        this.loadSearchedHotels();
-      } else {
-        this.loadAllHotels();
-      }
-    });
-  }
+
+
+ngOnInit(): void {
+  this.route.queryParams.subscribe(params => {
+    this.searchParams = params;
+    // this.nights = this.calculateNights(params.checkIn, params.checkOut);
+    this.nights = this.calculateNights(params['checkIn'], params['checkOut']);
+    if (this.hasValidSearchParams()) {
+      this.loadSearchedHotels();
+    } else {
+      this.loadAllHotels();
+    }
+  });
+}
+
+calculateNights(checkIn: string, checkOut: string): number {
+  if (!checkIn || !checkOut) return 0;
+  const inDate = new Date(checkIn);
+  const outDate = new Date(checkOut);
+  const diffMs = outDate.getTime() - inDate.getTime();
+  const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+  return diffDays > 0 ? diffDays : 0;
+}
 
 
 

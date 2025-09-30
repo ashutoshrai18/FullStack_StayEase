@@ -1,4 +1,4 @@
-// src/app/components/website/cart/cart.ts
+
   import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
   import {FormsModule} from '@angular/forms';
   import {ActivatedRoute, Router, RouterLink, RouterModule} from '@angular/router';
@@ -7,13 +7,15 @@
   import {HotelService} from '../../../service/hotel-service';
   import {UserModel} from '../../../model/user/user-model';
   import {HotelModel} from '../../../model/hotel/hotel-model';
+import {Footer} from '../footer/footer';
+import {Navbar} from '../navbar/navbar';
 
   @Component({
     standalone: true,
     selector: 'app-cart',
     templateUrl: './cart.html',
     styleUrls: ['./cart.css'],
-    imports: [FormsModule, RouterLink,RouterModule]
+    imports: [FormsModule,  RouterModule, Footer, Navbar]
   })
   export class Cart implements OnInit {
     // User fields
@@ -32,10 +34,10 @@
 
     // Booking fields
     roomId: string | null = null;
-    nights: number = 1;
     totalPrice: number = 0;
     checkInDate: string = '';
     checkOutDate: string = '';
+    nights: number | null = null;
 
     isLoading: boolean = false;
 
@@ -51,6 +53,8 @@
       this.route.paramMap.subscribe(params => {
         this.roomId = params.get('roomId');
         this.hotelId = params.get('hotelId') ? Number(params.get('hotelId')) : null;
+        this.nights = Number(this.route.snapshot.paramMap.get('nights'));
+        ;
 
         if (typeof window !== 'undefined' && window.localStorage) {
           this.userId = localStorage.getItem('userId') ? Number(localStorage.getItem('userId')) : null;
@@ -90,8 +94,7 @@
               this.pricePerNight = hotel.pricePerNight ?? 0;
               this.hotelImage = hotel.imageUrl ?? '';
               this.hotelRating = hotel.rating ?? 0;
-              this.nights = this.calculateNights(this.checkInDate, this.checkOutDate);
-              this.totalPrice = this.pricePerNight * this.nights;
+              this.totalPrice = this.pricePerNight * (this.nights ?? 1);
             }
             this.isLoading = false;
             this.cdr.detectChanges();
@@ -104,18 +107,12 @@
       });
     }
 
-    calculateNights(checkIn: string, checkOut: string): number {
-      if (!checkIn || !checkOut) return 1;
-      const inDate = new Date(checkIn);
-      const outDate = new Date(checkOut);
-      const diff = (outDate.getTime() - inDate.getTime()) / (1000 * 60 * 60 * 24);
-      return Math.max(1, Math.round(diff));
-    }
+
 
  // In cart.ts
  goToPayment() {
    if (this.roomId && this.hotelId) {
-     this.router.navigate(['/payment', this.roomId, this.hotelId]);
+     this.router.navigate(['/payment', this.roomId, this.hotelId, this.nights]);
    }
  }
   }

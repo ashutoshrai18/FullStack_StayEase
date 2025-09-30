@@ -36,6 +36,7 @@ export class Navbar implements OnInit {
         this.userName = 'Profile';
       }
     }
+
   }
 
   toggleDropdown() {
@@ -43,7 +44,7 @@ export class Navbar implements OnInit {
   }
 
   goToBookings() {
-    this.router.navigate(['/my-bookings']);
+    this.router.navigate(['/mybookings']);
     this.dropdownOpen = false;
   }
 

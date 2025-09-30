@@ -18,5 +18,5 @@ export interface BookingModel {
   checkOutDate: string;     // ISO date string
   bookingDate?: string;     // ISO date string, set by backend
   noOfPersons: number;
-  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED';
+  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'Confirmed' | 'Pending' | 'Cancelled';
 }

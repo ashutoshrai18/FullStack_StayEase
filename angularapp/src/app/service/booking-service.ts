@@ -31,4 +31,9 @@ export class BookingService {
   deleteBooking(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+
+  getBookingsByUserId(userId: number): Observable<BookingModel[]> {
+    return this.http.get<BookingModel[]>(`${this.apiUrl}/user/${userId}`);
+  }
 }

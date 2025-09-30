@@ -36,4 +36,8 @@ public class BookingService {
                 .orElseThrow(() -> new NoSuchElementException("Booking not found"));
         return booking.getUser();
     }
+
+    public List<Booking> getBookingsByUserId(Long userId) {
+        return bookingRepository.findByUser_UserId(userId);
+    }
 }

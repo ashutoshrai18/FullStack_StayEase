@@ -6,9 +6,6 @@ import {Navbar} from '../navbar/navbar';
 @Component({
   selector: 'app-landing-page',
   imports: [
-    HomeComponent,
-    Footer,
-    Navbar
   ],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css'

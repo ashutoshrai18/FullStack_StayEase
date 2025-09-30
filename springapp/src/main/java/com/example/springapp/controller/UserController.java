@@ -18,7 +18,6 @@ public class UserController {
         this.service = service;
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody Map<String, String> credentials) {
         String email = credentials.get("email");

@@ -24,6 +24,15 @@ export class Register {
   constructor(private userService: UserService, private router: Router) {}
 
   onSubmit() {
+    if (this.phoneNumber.length > 10 ) {
+      this.error = 'Phone number should not exceed 10 digits.';
+      alert(this.error);
+      return;
+    }else if (this.phoneNumber.length < 10 ) {
+      this.error = 'Phone number should not less than 10 digits.';
+      alert(this.error);
+      return;
+    }
     const user = {
       name: this.name,
       email: this.email,
@@ -48,4 +57,29 @@ export class Register {
       }
     });
   }
+  // onSubmit() {
+  //   const user = {
+  //     name: this.name,
+  //     email: this.email,
+  //     phoneNumber: this.phoneNumber,
+  //     password: this.password
+  //   };
+  //   this.userService.createUser(user).subscribe({
+  //     next: () => {
+  //       this.error = '';
+  //       this.router.navigate(['/login']);
+  //     },
+  //     error: err => {
+  //       if (err.status === 409) {
+  //         this.error = 'Email already exists.';
+  //       } else if (err.status === 500) {
+  //         this.error = 'Server error. Please try again later.';
+  //       } else {
+  //         this.error = 'Registration failed. Please try again.';
+  //       }
+  //       alert(this.error);
+  //       console.error('Error during registration:', err);
+  //     }
+  //   });
+  // }
 }

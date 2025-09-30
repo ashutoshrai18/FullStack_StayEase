@@ -1,1 +1,32 @@
-<p>mybookings works!</p>
+<div class="container py-4">
+  <h2 class="mb-4 text-center fw-bold text-light">My Bookings</h2>
+  <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 200px;">
+    <div class="spinner-border text-primary" role="status"></div>
+    <span class="ms-3 text-muted">Loading bookings...</span>
+  </div>
+  <div *ngIf="!isLoading && bookings.length === 0" class="text-center text-muted mt-5">
+    <i class="bi bi-calendar-x fs-1"></i>
+    <p class="mt-2">No bookings found.</p>
+  </div>
+  <div class="row g-4" *ngIf="!isLoading && bookings.length > 0">
+    <div class="col-12" *ngFor="let booking of bookings">
+      <div class="booking-dark-card d-flex flex-row align-items-center p-3 shadow-sm">
+        <img [src]="booking.room?.hotel?.imageUrl || 'https://via.placeholder.com/120x100?text=Hotel'"
+             alt="{{ booking.room?.hotel?.name }}"
+             class="hotel-img me-3" />
+        <div class="flex-grow-1">
+          <h4 class="mb-1 text-light">{{ booking.room?.hotel?.name || 'Unknown Hotel' }}</h4>
+          <div class="text-secondary mb-1">{{ booking.room?.hotel?.address || 'No address' }}</div>
+          <div class="mb-2 text-light">
+            {{ booking.room?.hotel?.description || 'No description available.' }}
+          </div>
+        </div>
+        <div class="text-end ms-3">
+          <div class="price text-danger fw-bold fs-5">
+            ₹{{ booking.room?.hotel?.pricePerNight || booking.room?.price || 'N/A' }}/night
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

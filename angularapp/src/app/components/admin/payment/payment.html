@@ -16,8 +16,8 @@
                               <tbody>
                                 <tr *ngFor="let txn of payments; let i = index">
                                   <td>{{ txn.paymentId }}</td>
-                                  <td>{{ txn.booking?.bookingId }}</td>
-                                  <td>{{ txn.user?.name }}</td>
+                                  <td>{{ txn.booking.bookingId }}</td>
+                                  <td>{{ txn.user.name }}</td>
                                   <td>{{ txn.paymentDate }}</td>
                                   <td>{{ txn.amount | currency }}</td>
                                   <td>

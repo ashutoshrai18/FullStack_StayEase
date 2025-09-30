@@ -1,30 +1,29 @@
-// src/app/service/room.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs'; // Adjust path as needed
-import { Room } from '../components/admin/room/room';
+    import { HttpClient } from '@angular/common/http';
+    import { Observable } from 'rxjs';
+    import { RoomModel } from '../model/room/room-model';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RoomService {
-  private apiUrl = '/api/rooms';
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class RoomService {
+      private apiUrl = '/api/rooms';
 
-  constructor(private http: HttpClient) {}
+      constructor(private http: HttpClient) {}
 
-  getAllRooms(): Observable<Room[]> {
-    return this.http.get<Room[]>(this.apiUrl);
-  }
+      getAllRooms(): Observable<RoomModel[]> {
+        return this.http.get<RoomModel[]>(this.apiUrl);
+      }
 
-  getRoomById(id: number): Observable<Room> {
-    return this.http.get<Room>(`${this.apiUrl}/${id}`);
-  }
+      getRoomById(id: number): Observable<RoomModel> {
+        return this.http.get<RoomModel>(`${this.apiUrl}/${id}`);
+      }
 
-  createRoom(room: Room): Observable<Room> {
-    return this.http.post<Room>(this.apiUrl, room);
-  }
+      createRoom(room: RoomModel): Observable<RoomModel> {
+        return this.http.post<RoomModel>(this.apiUrl, room);
+      }
 
-  deleteRoom(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-}
+      deleteRoom(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+      }
+    }

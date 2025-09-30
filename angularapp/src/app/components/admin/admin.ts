@@ -4,7 +4,6 @@ import {Login} from './login/login';
 @Component({
   selector: 'app-admin',
   imports: [
-    Login
   ],
   templateUrl: './admin.html',
   styleUrl: './admin.css'

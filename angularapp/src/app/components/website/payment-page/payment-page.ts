@@ -11,6 +11,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
           import { forkJoin } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import {Navbar} from '../navbar/navbar';
+import {Footer} from '../footer/footer';
 
           declare var Razorpay: any;
 
@@ -19,7 +20,7 @@ import {Navbar} from '../navbar/navbar';
             templateUrl: './payment-page.html',
             styleUrls: ['./payment-page.css'],
             standalone: true,
-            imports: [CommonModule, Navbar]
+            imports: [CommonModule, Navbar, Footer]
           })
           export class PaymentPage implements OnInit {
             userId: number | null = null;
@@ -35,13 +36,13 @@ import {Navbar} from '../navbar/navbar';
             pricePerNight: number = 0;
             hotelImage: string = '';
             hotelRating: number = 0;
+            nights: number | null = null;
 
             roomId: string | null = null;
             booking: BookingModel | null = null;
             checkInDate: string = '2024-06-10';
             checkOutDate: string = '2024-06-12';
             noOfPersons: number = 1;
-            nights: number = 1;
             totalPrice: number = 0;
 
             isLoading: boolean = false;
@@ -61,7 +62,7 @@ import {Navbar} from '../navbar/navbar';
               this.route.paramMap.subscribe(params => {
                 this.roomId = params.get('roomId');
                 this.hotelId = params.get('hotelId') ? Number(params.get('hotelId')) : null;
-
+                this.nights = Number(this.route.snapshot.paramMap.get('nights'));
                 let userStr: string | null = null;
                 if (typeof window !== 'undefined' && window.localStorage) {
                   userStr = localStorage.getItem('user');
@@ -97,8 +98,9 @@ import {Navbar} from '../navbar/navbar';
                       this.hotelImage = hotel.imageUrl ?? '';
                       this.hotelRating = hotel.rating ?? 0;
 
-                      this.nights = this.calculateNights(this.checkInDate, this.checkOutDate);
-                      this.totalPrice = this.pricePerNight * this.nights;
+                      this.totalPrice = this.pricePerNight * (this.nights ?? 1);
+
+
 
                       this.isLoading = false;
                       this.cdr.detectChanges();
@@ -115,13 +117,7 @@ import {Navbar} from '../navbar/navbar';
               });
             }
 
-            calculateNights(checkIn: string, checkOut: string): number {
-              if (!checkIn || !checkOut) return 1;
-              const inDate = new Date(checkIn);
-              const outDate = new Date(checkOut);
-              const diff = (outDate.getTime() - inDate.getTime()) / (1000 * 60 * 60 * 24);
-              return Math.max(1, Math.round(diff));
-            }
+
 
             payAtHotel(): void {
               if (this.user && this.roomId) {
