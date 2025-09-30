@@ -1,0 +1,14 @@
+@media (max-width: 991.98px) {
+  .row.g-4 > [class^="col-"] {
+    margin-bottom: 1.5rem;
+  }
+}
+.card {
+  border-radius: 12px;
+}
+input.form-control {
+  font-weight: 500;
+}
+.btn-success {
+  font-size: 1.1rem;
+}

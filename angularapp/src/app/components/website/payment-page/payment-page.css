@@ -1,0 +1,18 @@
+.card {
+  border-radius: 15px;
+}
+
+.alert {
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+button {
+  border-radius: 10px;
+}
+
+img {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+}

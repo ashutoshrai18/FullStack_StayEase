@@ -1,0 +1,91 @@
+<div class="container my-4">
+                                <div class="mb-3">
+                                  <a href="#" class="text-danger text-decoration-none">
+                                    <i class="bi bi-arrow-left"></i>
+                                    <span class="fw-bold">Modify your booking</span>
+                                  </a>
+                                </div>
+                                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                  <span class="me-2">🎉</span>
+                                  <span>Yay! you just saved ₹1347 on this booking!</span>
+                                </div>
+                                <div class="row g-4">
+                                  <div class="col-lg-7">
+                                    <div class="card shadow-sm">
+                                      <div class="card-body">
+                                        <h5 class="mb-3">
+                                          <span class="badge bg-dark me-2">1</span>
+                                          Enter your details
+                                        </h5>
+                                        <p>We will use these details to share your booking information</p>
+                                        <form>
+                                          <div class="row mb-3">
+                                            <div class="col-md-6">
+                                              <label class="form-label fw-bold">Full Name</label>
+                                              <input type="text" class="form-control" [(ngModel)]="fullName" name="fullName"/>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <label class="form-label fw-bold">Email Address</label>
+                                              <input type="email" class="form-control" [(ngModel)]="email" name="email"/>
+                                            </div>
+                                          </div>
+                                          <div class="mb-4">
+                                            <label class="form-label fw-bold">Mobile Number</label>
+                                            <div class="input-group">
+                                              <span class="input-group-text">+91</span>
+                                              <input type="text" class="form-control" [(ngModel)]="mobile" name="mobile"/>
+                                              <span class="input-group-text text-success">
+                                                <i class="bi bi-check-circle"></i> Verified
+                                              </span>
+                                            </div>
+                                          </div>
+                                         <button
+                                           type="button"
+                                           class="btn btn-success w-100 fw-bold"
+                                           (click)="goToPayment()"
+                                           [disabled]="!roomId || !hotelId"
+                                         >
+                                           Continue
+                                         </button>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-5">
+                                    <div class="card shadow-sm">
+                                      <div class="card-body">
+                                        <div class="d-flex align-items-start mb-3">
+                                          <div class="flex-grow-1">
+                                            <h6 class="fw-bold mb-1">{{ hotelName }}</h6>
+                                            <div class="mb-1">
+                                              <span class="badge bg-success">{{ hotelRating }}</span>
+                                              <span class="text-muted ms-1">- Excellent</span>
+                                            </div>
+                                            <div class="fw-bold">{{ nights }} Night{{ nights > 1 ? 's' : '' }}</div>
+                                          </div>
+                                          <img [src]="hotelImage" alt="Hotel" class="rounded ms-3" style="width:80px;height:60px;object-fit:cover;">
+                                        </div>
+                                        <div class="mb-2">
+                                          <i class="bi bi-calendar"></i>
+                                          <span class="fw-bold">{{ checkInDate }} – {{ checkOutDate }}</span>
+                                          <span class="ms-3 fw-bold">1 Room, 1 Guest</span>
+                                        </div>
+                                        <div class="mb-2">
+                                          <i class="bi bi-door-closed"></i>
+                                          <span class="fw-bold">{{ hotelAddress }}</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                          <span>Room price for {{ nights }} Night{{ nights > 1 ? 's' : '' }} X 1 Guest</span>
+                                          <span>₹{{ pricePerNight }}</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <span class="fw-bold fs-5">Payable Amount</span>
+                                          <span class="fw-bold fs-3 text-dark">₹{{ totalPrice }}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>

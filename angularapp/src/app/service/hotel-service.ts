@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HotelModel } from '../model/hotel/hotel-model';
+import {HotelWithRoomIds} from './HotelWithRoomIds';
 
 @Injectable({ providedIn: 'root' })
 export class HotelService {
@@ -31,12 +32,48 @@ export class HotelService {
     });
   }
 
-  advancedSearchHotels(address: string, roomType: string, numPersons: number): Observable<HotelModel[]> {
-    return this.http.get<HotelModel[]>(`${this.apiUrl}/search/advanced`, {
+  // advancedSearchHotels(address: string, roomType: string, numPersons: number): Observable<HotelModel[]> {
+  //   return this.http.get<HotelModel[]>(`${this.apiUrl}/search/advanced`, {
+  //     params: {
+  //       address,
+  //       roomType,
+  //       numPersons: numPersons.toString()
+  //     }
+  //   });
+  // }
+
+  // advancedSearchHotels(
+  //   address: string,
+  //   roomType: string,
+  //   numPersons: number,
+  //   checkInDate: string,
+  //   checkOutDate: string
+  // ): Observable<HotelModel[]> {
+  //   return this.http.get<HotelModel[]>(`${this.apiUrl}/search/advanced`, {
+  //     params: {
+  //       address,
+  //       roomType,
+  //       numPersons: numPersons.toString(),
+  //       checkInDate,
+  //       checkOutDate
+  //     }
+  //   });
+  // }
+
+  advancedSearchHotels(
+    address: string,
+    roomType: string,
+    numPersons: number,
+    checkInDate: string,
+    checkOutDate: string
+  ): Observable<HotelWithRoomIds[]> {
+    return this.http.get<HotelWithRoomIds[]>(`${this.apiUrl}/search/advanced`, {
       params: {
         address,
         roomType,
-        numPersons: numPersons.toString()
+        numPersons: numPersons.toString(),
+        checkInDate,
+        checkOutDate
       }
     });
   }

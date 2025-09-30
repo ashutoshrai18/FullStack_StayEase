@@ -22,7 +22,9 @@ export class PaymentService {
   // getPayment(id: number): Observable<string> {
   //   return this.http.get<string>(`${this.apiUrl}/${id}`);
   // }
-
+  createPayment(payment: Payment): Observable<Payment> {
+    return this.http.post<Payment>(this.apiUrl, payment);
+  }
 
   getAllPayment(): Observable<Payment[]> {
     return this.http.get<Payment[]>(this.apiUrl);

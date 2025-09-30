@@ -33,4 +33,16 @@ public class RoomController {
     public void deleteRoom(@PathVariable Long id) {
         roomService.deleteRoom(id);
     }
+
+    @GetMapping("/search/advanced")
+    public List<Room> searchAvailableRooms(
+            @RequestParam String address,
+            @RequestParam String type,
+            @RequestParam int capacity,
+            @RequestParam String checkInDate,
+            @RequestParam String checkOutDate) {
+        java.time.LocalDate checkIn = java.time.LocalDate.parse(checkInDate);
+        java.time.LocalDate checkOut = java.time.LocalDate.parse(checkOutDate);
+        return roomService.findAvailableRooms(address, type, capacity, checkIn, checkOut);
+    }
 }

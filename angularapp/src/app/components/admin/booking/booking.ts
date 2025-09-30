@@ -66,7 +66,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
          this.cdr.detectChanges();
          return;
        }
-       const userRequests = bookings.map(b => this.bookingService.getUserByBookingId(b.bookingId));
+       const userRequests = bookings.map(b => this.bookingService.getUserByBookingId(b.bookingId!));
        forkJoin(userRequests).subscribe((userDetails: UserModel[]) => {
          this.bookings = bookings.map((booking, i) => ({
            ...booking,

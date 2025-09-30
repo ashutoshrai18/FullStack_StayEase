@@ -1,10 +1,11 @@
+// src/app/components/website/hotel-lists/hotel-lists.ts
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterLink, ActivatedRoute} from '@angular/router';
 import {HotelService} from '../../../service/hotel-service';
-import {HotelModel} from '../../../model/hotel/hotel-model';
 import {Navbar} from '../navbar/navbar';
 import {forkJoin} from 'rxjs';
+import {HotelWithRoomIds} from '../../../service/HotelWithRoomIds';
 
 @Component({
   standalone: true,
@@ -14,7 +15,8 @@ import {forkJoin} from 'rxjs';
   imports: [CommonModule, Navbar, RouterLink]
 })
 export class HotelListsComponent implements OnInit {
-  hotels: HotelModel[] = [];
+  hotels: HotelWithRoomIds[] = [];
+  userId: string = 'current-user-id';
   searchParams: any = {};
   isLoading: boolean = false;
 
@@ -36,9 +38,10 @@ export class HotelListsComponent implements OnInit {
     });
   }
 
+
+
   hasValidSearchParams(): boolean {
     const {address, roomType, numPersons} = this.searchParams;
-    console.log('Checking params:', address, roomType, numPersons); // Debug
     return (
       typeof address === 'string' && address.trim() !== '' &&
       typeof roomType === 'string' && roomType.trim() !== '' &&
@@ -48,16 +51,19 @@ export class HotelListsComponent implements OnInit {
 
   loadSearchedHotels(): void {
     this.isLoading = true;
-    const {address, roomType, numPersons} = this.searchParams;
+    const {address, roomType, numPersons, checkIn, checkOut} = this.searchParams;
     forkJoin({
       hotels: this.hotelService.advancedSearchHotels(
         address.trim(),
         roomType.trim(),
-        +numPersons
+        +numPersons,
+        checkIn ? checkIn.trim() : '',
+        checkOut ? checkOut.trim() : ''
       )
     }).subscribe({
       next: ({hotels}) => {
-        this.hotels = hotels;
+        console.log('Searched hotels:', hotels);
+        this.hotels = hotels; // Use hotel and availableRoomIds directly
         this.isLoading = false;
         this.cdr.detectChanges();
       },
@@ -75,7 +81,10 @@ export class HotelListsComponent implements OnInit {
       hotels: this.hotelService.getAllHotels()
     }).subscribe({
       next: ({hotels}) => {
-        this.hotels = hotels;
+        this.hotels = hotels.map(hotel => ({
+          hotel,
+          availableRoomIds: []
+        }));
         this.isLoading = false;
         this.cdr.detectChanges();
       },

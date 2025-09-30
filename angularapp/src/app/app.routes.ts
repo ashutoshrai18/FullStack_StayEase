@@ -20,13 +20,18 @@ import {HotelListsComponent} from './components/website/hotel-lists/hotel-lists'
 import {HotelDetailsComponent} from './components/website/hotel-details/hotel-details';
 import { Profile } from './components/website/profile/profile';
 import { Register } from './components/website/register/register';
+import {Cart} from './components/website/cart/cart';
+import {PaymentPage} from './components/website/payment-page/payment-page';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'signup', component: Signup},
   {path: 'register', component: Register},
+  {path: 'bookings', component: Booking},
   {path: 'navbar', component: Navbar},
   {path: 'sidebar', component: Sidebar},
+  { path: 'cart/:roomId/:hotelId', component: Cart },
+  { path: 'payment/:roomId/:hotelId', component: PaymentPage },
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'hotel-lists', component: HotelListsComponent},

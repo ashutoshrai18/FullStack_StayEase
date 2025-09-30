@@ -7,8 +7,10 @@ export interface Payment {
   status?: string;
   user: UserModel;
   booking: BookingModel;
+  transactionId?: string; // Unique transaction identifier, set by backend
   paymentMethod?: string;     // ISO date string, set by backend
-  paymentDate?: string;     // ISO date string, set by backend
+  paymentDate?: string;
+  // ISO date string, set by backend
 
 }
 

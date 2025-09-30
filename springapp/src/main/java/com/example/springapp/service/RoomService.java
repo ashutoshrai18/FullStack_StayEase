@@ -28,4 +28,8 @@ public class RoomService {
     public void deleteRoom(Long id) {
         roomRepository.deleteById(id);
     }
+
+    public List<Room> findAvailableRooms(String address, String type, int capacity, java.time.LocalDate checkInDate, java.time.LocalDate checkOutDate) {
+        return roomRepository.findAvailableRooms(address, type, capacity, checkInDate, checkOutDate);
+    }
 }

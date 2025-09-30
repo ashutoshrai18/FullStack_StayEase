@@ -11,7 +11,7 @@ import { RoomModel } from '../room/room-model';
 // }
 
 export interface BookingModel {
-  bookingId: number;
+  bookingId?: number;
   user: UserModel;
   room: RoomModel;
   checkInDate: string;      // ISO date string

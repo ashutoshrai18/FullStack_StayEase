@@ -30,7 +30,9 @@ export class SearchBox {
       queryParams: {
         address: this.address,
         roomType: this.roomType,
-        numPersons: this.guest
+        numPersons: this.guest,
+        checkIn: this.checkIn,
+        checkOut: this.checkOut
       }
     });
   }
