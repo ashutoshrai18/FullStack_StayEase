@@ -45,9 +45,9 @@ public class Payment {
     @JoinColumn(name = "booking_id")
     private Booking booking;
 
-    private String transactionId; // Unique transaction identifier
+    private String transactionId;
 
-    private String PaymentMethod; // e.g., CREDIT_CARD, PAYPAL, etc.
+    private String PaymentMethod;
     private LocalDate bookingDate;
     @PrePersist
     public void prePersist() {

@@ -73,7 +73,7 @@ export class Home implements OnInit {
         this.hotelsCount = hotels.length;
         this.recentUsers = users.slice(-5).reverse();
 
-        // Group bookings by month of checkInDate
+
         const monthlyCounts: { [key: string]: number } = {};
         bookings.forEach((b: any) => {
           const date = new Date(b.checkInDate);

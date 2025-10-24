@@ -1,5 +1,6 @@
 .parent-div {
-  background-color: #e72727;
+  background: url('https://i.ibb.co/V0ssnH3B/bg-login.png') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;

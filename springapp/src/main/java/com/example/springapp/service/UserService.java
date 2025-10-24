@@ -54,7 +54,6 @@ public class UserService {
         return repo.findById(id);
     }
 
- // In UserService.java
  public User createUser(User user){
      if (repo.existsByEmail(user.getEmail())) {
          throw new IllegalArgumentException("Email already exists");
@@ -66,13 +65,7 @@ public class UserService {
      }
  }
 
-    // UserService.java
-//    public User createUser(User user) {
-//        if (userRepository.existsByEmail(user.getEmail())) {
-//            throw new IllegalArgumentException("Email already exists");
-//        }
-//        return userRepository.save(user);
-//    }
+
     public User updateUser(User user){
         return repo.save(user);
     }

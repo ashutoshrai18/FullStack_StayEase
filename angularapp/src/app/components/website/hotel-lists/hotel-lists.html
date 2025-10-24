@@ -1,65 +1,58 @@
-<app-navbar/>
+<!-- src/app/components/website/hotel-lists/hotel-lists.html -->
+                  <app-navbar/>
 
-<div class="container-fluid min-vh-100 py-5" style="background-color: #181a1b;">
-  <div class="row justify-content-center">
-    <div class="col-lg-8 col-md-10">
-      <h2 class="fw-bold mb-4" style="color: #e0e0e0;">Available Hotels</h2>
+                  <div class="container-fluid min-vh-100 py-5" style="background-color: #181a1b;">
+                    <div class="row justify-content-center">
+                      <div class="col-lg-8 col-md-10">
+                        <h2 class="fw-bold mb-4" style="color: #e0e0e0;">Available Hotels</h2>
 
-      <!-- Loader -->
-      <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 200px;">
-        <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
+                        <!-- Loader -->
+                        <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                          <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                        </div>
 
-      <!-- Hotel List -->
-      <div *ngIf="!isLoading">
-        <div *ngIf="hotels.length === 0" class="text-light">No hotels found.</div>
-        <ul class="list-group list-group-flush" *ngIf="hotels.length > 0">
-          <li *ngFor="let item of hotels"
-              class="list-group-item bg-dark text-light d-flex flex-column flex-md-row align-items-md-center mb-3 rounded shadow flex-wrap p-4"
-              style="background-color: #23272b; color: #e0e0e0;">
-            <div class="d-flex align-items-center mb-2 mb-md-0 flex-grow-1">
-              <img
-                [src]="item.hotel.imageUrl || 'assets/default-hotel.jpg'"
-                alt="{{item.hotel.name}}"
-                class="rounded me-3"
-                style="width: 140px; height: 140px; object-fit: cover;"
-              >
-              <div>
-                <h5 class="mb-1" style="color: #fff;">{{ item.hotel.name }}</h5>
-                <div class="small text-secondary">{{ item.hotel.address }}</div>
-                <div *ngIf="item.hotel.rating" class="small text-warning">Rating: {{ item.hotel.rating }} ★</div>
-                <div *ngIf="item.hotel.description" class="small text-light mt-1">{{ item.hotel.description }}</div>
-              </div>
-            </div>
-            <div class="d-flex flex-column flex-md-row align-items-md-center ms-md-auto mt-2 mt-md-0">
-              <span class="fw-bold text-danger me-md-3">₹{{ item.hotel.pricePerNight }}/night</span>
-<!--              <button-->
-<!--                class="btn btn-outline-light btn-sm me-2 mb-2 mb-md-0"-->
-<!--                [routerLink]="['/hotel-details', item.hotel.hotelId, item.hotel.name]"-->
-<!--              >-->
-<!--                View-->
-<!--              </button>-->
-              <ng-container *ngFor="let roomId of item.availableRoomIds">
-                <button
-                  class="btn btn-outline-light btn-sm me-2 mb-2 mb-md-0"
-                  [routerLink]="['/hotel-details', item.hotel.hotelId, roomId,item.hotel.name, this.nights]"
-                >
-                  View
-                </button>
-                <button
-                  *ngIf="item.hotel.hotelId"
-                  class="btn btn-danger btn-sm me-2 mb-2 mb-md-0"
-                  [routerLink]="['/cart', roomId, item.hotel.hotelId, nights]"
-                >
-                  Book Room
-                </button>
-              </ng-container>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+                        <!-- Hotel List -->
+                        <div *ngIf="!isLoading">
+                          <div *ngIf="hotels.length === 0" class="text-light">No hotels found.</div>
+                          <ul class="list-group list-group-flush" *ngIf="hotels.length > 0">
+                            <li *ngFor="let item of hotels"
+                                class="list-group-item bg-dark text-light d-flex flex-column flex-md-row align-items-md-center mb-3 rounded shadow flex-wrap p-4"
+                                style="background-color: #23272b; color: #e0e0e0;">
+                              <div class="d-flex align-items-center mb-2 mb-md-0 flex-grow-1">
+                                <img
+                                  [src]="item.hotel.imageUrl || 'assets/default-hotel.jpg'"
+                                  alt="{{item.hotel.name}}"
+                                  class="rounded me-3"
+                                  style="width: 140px; height: 140px; object-fit: cover;"
+                                >
+                                <div>
+                                  <h5 class="mb-1" style="color: #fff;">{{ item.hotel.name }}</h5>
+                                  <div class="small text-secondary">{{ item.hotel.address }}</div>
+                                  <div *ngIf="item.hotel.rating" class="small text-warning">Rating: {{ item.hotel.rating }} ★</div>
+                                  <div *ngIf="item.hotel.description" class="small text-light mt-1">{{ item.hotel.description }}</div>
+                                </div>
+                              </div>
+                              <div class="d-flex flex-column flex-md-row align-items-md-center ms-md-auto mt-2 mt-md-0">
+                                <span class="fw-bold text-danger me-md-3">₹{{ item.hotel.pricePerNight }}/night</span>
+                                <button
+                                  class="btn btn-outline-light btn-sm me-2 mb-2 mb-md-0"
+                                  [routerLink]="['/hotel-details', item.hotel.hotelId, item.availableRoomIds[0], item.hotel.name, nights]"
+                                >
+                                  View
+                                </button>
+                                <button
+                                  *ngIf="item.hotel.hotelId"
+                                  class="btn btn-danger btn-sm me-2 mb-2 mb-md-0"
+                                  [routerLink]="['/cart', item.availableRoomIds[0], item.hotel.hotelId, nights]"
+                                >
+                                  Book Room
+                                </button>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
